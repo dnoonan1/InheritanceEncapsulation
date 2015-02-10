@@ -2,24 +2,22 @@ package real;
 
 /**
  *
+ *         Real
+ *           |
+ *       Vector2d
+ *        |     \
+ *   Vector3d    ComplexNumber  < - - Complex
+ *        |    
+ *   Vector4d    
+ *          \
+ *         Quaternion  < - - Complex
+ *
+ *   Elegant in terms of structure, but not efficient
+ * 
  * @author Dan Noonan
  */
 
-/*
-    HIERARCHY:
-
-          Real
-            |
-         Vector2d
-         |       \
-    Vector3d    ComplexNumber  < - - Complex
-         |         |
-    Vector4d    Quaternion
-
-    Elegant in terms of structure, but not efficient
-*/
-
-// R1 space
+// Real (R) space
 public abstract class Real {
     // Real is abstract because there's no need to instantiate it; it's
     // a wrapper for double (like Double) and a base class for other vectors

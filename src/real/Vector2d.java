@@ -7,6 +7,7 @@ package real;
 
 // R2 space
 public class Vector2d extends Real {
+    
     private double y;
     
     public Vector2d() {}
@@ -54,7 +55,7 @@ public class Vector2d extends Real {
     }
     
     public final void add(Vector2d v) {
-        add(getX());
+        super.add(v.getX());
         y += v.y;
     }
     
