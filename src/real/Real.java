@@ -30,8 +30,8 @@ public abstract class Real {
         this.x = x;
     }
     
-    public Real(Real num) {
-        this.x = num.x;
+    public Real(Real real) {
+        this.x = real.x;
     }
     
     public final double getX() {
@@ -42,30 +42,51 @@ public abstract class Real {
         this.x = x;
     }
     
+    // Additive inverse
     public void opposite() {
         x = -x;
     }
     
-    public double norm() {
-        return Math.abs(x);
+    // Add another real number
+    public final void add(Real real) {
+        x += real.x;
     }
     
-    public void normalize() {
-        x /= Math.abs(x);
+    // Subtract (same as adding opposite)
+    public final void subtract(Real real) {
+        x -= real.x;
     }
     
-    public boolean isUnit() {
-        return norm() == 1.0;
-    }
-    
-    public final void add(double number) {
-        x += number;
-    }
-    
+    // Scalar multiplication
     public void scale(double k) {
         x *= k;
     }
     
+    // Dot product (in R space, same as scalar multiplication)
+    // The difference between the two methods is that this returns a double
+    public double dot(Real real) {
+        return x * real.x;
+    }
+    
+    // Norm (in R space, norm = absolute value)
+    public double norm() {
+        return Math.abs(x);
+    }
+    
+    // Make this into -1 or 1 - throws an exception if norm = 0
+    public void normalize() {
+        x /= Math.abs(x);
+    }
+    
+    // Test whether this is a unit
+    public boolean isUnit() {
+        return norm() == 1.0;
+    }
+    
+    public double distanceTo(Real real) {
+        return Math.abs(x - real.x);
+    }
+
     @Override
     public String toString() {
         return Double.toString(x);

@@ -7,6 +7,7 @@ package real;
 
 // R4 space
 public class Vector4d extends Vector3d {
+    
     private double w;
     
     public Vector4d() {}
@@ -25,7 +26,7 @@ public class Vector4d extends Vector3d {
     }
     
     public Vector4d(Vector4d v) {
-        super((Vector3d)v);
+        super(v);
         w = v.w;
     }
     
@@ -40,6 +41,39 @@ public class Vector4d extends Vector3d {
     public void opposite() {
         super.opposite();
         w = -w;
+    }
+    
+    public void add(Vector4d v) {
+        super.add(v);
+        w += v.w;
+    }
+    
+    public void subtract(Vector4d v) {
+        super.subtract(v);
+        w += v.w;
+    }
+    
+    @Override
+    public void scale(double k) {
+        super.scale(k);
+        w *= k;
+    }
+    
+    public double dot(Vector4d v) {
+        return super.dot(v) + w * v.w;
+    }
+    
+    // Cross-product is illegal in any space beyond R3
+    @Override
+    public final void cross(Vector3d v) {
+        throw new UnsupportedOperationException(
+                "Only 3D vectors can be cross-multiplied");
+    }
+    
+    @Override
+    public final double triple(Vector3d v, Vector3d w) {
+        throw new UnsupportedOperationException("Only 3D vectors have a triple "
+                + "product");
     }
     
     @Override
@@ -57,25 +91,10 @@ public class Vector4d extends Vector3d {
         return norm() == 1.0;
     }
     
-    public void add(Vector4d v) {
-        super.add((Vector3d)v);
-        w += v.w;
-    }
-    
-    @Override
-    public void scale(double k) {
-        super.scale(k);
-        w *= k;
-    }
-    
-    public double dot(Vector4d v) {
-        return super.dot((Vector3d)v) + w * v.w;
-    }
-    
-    // Cross-product is illegal in any space beyond R3
-    public final void cross(Vector3d v) {
-        throw new UnsupportedOperationException(
-                "Only 3D vectors can be cross-multiplied!");
+    public double distanceTo(Vector4d v) {
+        Vector4d u = new Vector4d(this);
+        u.subtract(v);
+        return u.norm();
     }
     
     @Override

@@ -22,7 +22,8 @@ public class Startup {
         
         // Demonstrate Drawable
         Drawable[] stuff = {
-            new Circle(), new Rectangle(), new Text("Hello!")
+            new Circle(), new Rectangle(), new Text("Hello!"), new Line2d()
+            //new CubicBezierSegment2d(0.0, 0.0,  0.0, 1.0,  1.0, 1.0,  1.0, 0.0)
         };
         
         for (Drawable thing : stuff) {
